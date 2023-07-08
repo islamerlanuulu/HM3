@@ -30,41 +30,30 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         setup()
         fetchCharacters()
-        managerKeyChain()
+       
         
-        UserDefaultService.shared.save("White", forKey: .color)
+
         
-        print(UserDefaultService.shared.string(forKey: .color))
         
-         func  managerKeyChain() {
-            
-            let service = "com.example.app"
-            let account = "myAccount"
-            let value = "myPassword"
-            
-            
-            let saveSuccess = KeychainManager.shared.saveValue(service: service, account: account, value: value)
-            print("Save to Keychain: \(saveSuccess)")
-            
-            
-            if let loadedValue = KeychainManager.shared.loadValue(service: service, account: account) {
-                print("Loaded from Keychain: \(loadedValue)")
-            } else {
-                print("Value not found in Keychain")
-            }
-            
-            let removeSuccess = KeychainManager.shared.removeValue(service: service, account: account)
-            print("Remove from Keychain: \(removeSuccess)")
-            
-            
-        }
     }
     private func setup() {
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        
+        let customButton = UIBarButtonItem(title: "Завершить Сеанс", style: .plain, target: self, action: #selector(addButtonTapped))
+        
+        navigationItem.rightBarButtonItem = customButton
     }
+    
+    @objc private func addButtonTapped() {
+        let vc = EntranceViewController()
+        vc.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(vc, animated: true)
+
+       }
     
     private func fetchCharacters() {
         Task {
