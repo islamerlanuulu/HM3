@@ -45,8 +45,18 @@ class StartViewController: UIViewController {
         
         let customButton = UIBarButtonItem(title: "Завершить Сеанс", style: .plain, target: self, action: #selector(addButtonTapped))
         
-        navigationItem.rightBarButtonItem = customButton
+        navigationItem.leftBarButtonItem = customButton
+        
+        let customBtn = UIBarButtonItem(image: UIImage(systemName: ""), style: .plain, target: self, action: #selector(addNewPersons))
+        navigationItem.rightBarButtonItem = customBtn
     }
+    
+    @objc private func addNewPersons() {
+        let vc = EntranceViewController()
+        vc.navigationItem.hidesBackButton = true
+        navigationController?.pushViewController(vc, animated: true)
+
+       }
     
     @objc private func addButtonTapped() {
         let vc = EntranceViewController()

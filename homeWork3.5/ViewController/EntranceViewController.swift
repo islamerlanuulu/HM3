@@ -203,18 +203,10 @@ class EntranceViewController: UIViewController {
     }
     
     func showRegister() {
-        let alert = UIAlertController(title: "Такой  аккаунт не Существует",
-                                      message: "Хотели вы бы создать учетную запись?",
+        let alert = UIAlertController(title: "Неверный Логин или Пароль",
+                                      message: "?",
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction( title: "Создать",
-                                       style: .default,
-                                       handler: { _ in
-            
-           let vc = RegisterViewController()
-            self.navigationController?.pushViewController(RegisterViewController(), animated: true)
-            
-        }))
-        alert.addAction(UIAlertAction( title: "Отмена",
+        alert.addAction(UIAlertAction( title: "ОК",
                                        style: .default,
                                        handler: { _ in
         }))
